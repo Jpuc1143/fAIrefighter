@@ -6,8 +6,9 @@ from rasterio.transform import xy
 from pyproj import Transformer
 from scipy.spatial import KDTree
 from csv import DictWriter
+import math
 
-from camera import Camera
+from camera import Camera, CameraDirection
 from threat_area import ThreatArea
 
 
@@ -16,13 +17,15 @@ def extract_candidate_cameras(filepath: str) -> list[Camera]:
     gdf = gp.read_file(filepath, layer="Antenas")
     for point in gdf["geometry"]:
         # TODO: choose only LTE/5G/IOT antennas.
-        camera = Camera(
-                len(cameras),
-                lat=point.y,
-                lon=point.x,
-                )
+        for direction in CameraDirection:
+            camera = Camera(
+                    len(cameras),
+                    direction.value,
+                    lat=point.y,
+                    lon=point.x,
+                    )
 
-        cameras.append(camera)
+            cameras.append(camera)
 
     return cameras
 
@@ -63,7 +66,6 @@ def extract_threat_areas(filepath: str) -> list[ThreatArea]:
 
 def assign_threat_areas_to_cameras(cameras: list[Camera], threat_areas: list[ThreatArea]) -> None:
     PROJECTION = "EPSG:32719"
-    CAMERA_RANGE = 10000
     transformer = Transformer.from_crs("EPSG:4326", PROJECTION, always_xy=True)
 
     camera_array = list(transformer.transform(x.longitude, x.latitude) for x in cameras)
@@ -72,26 +74,31 @@ def assign_threat_areas_to_cameras(cameras: list[Camera], threat_areas: list[Thr
     camera_tree = KDTree(camera_array)
     area_tree = KDTree(area_array)
 
-    results = camera_tree.query_ball_tree(area_tree, CAMERA_RANGE)
+    results = camera_tree.query_ball_tree(area_tree, Camera.VIEW_RANGE)
     for camera_index, result in enumerate(results):
         camera = cameras[camera_index]
-        camera.areas_covered.extend(threat_areas[x].id for x in result)
+        for area_index in result:
+            angle = np.degrees(math.atan2(area_array[area_index][1], area_array[area_index][0]))
+            angle = (angle + 360) % 360
+            if abs(angle - 90*camera.direction) <= Camera.VIEW_ANGLE / 2:
+                camera.areas_covered.append(threat_areas[area_index].id)
 
 
 if __name__ == "__main__":
     cameras = extract_candidate_cameras("./Mapa_Antenas_Region_08.kmz")
     print(len(cameras), "cameras extracted")
+
     threat_areas = extract_threat_areas("./8_amenaza.tif")
     print(len(threat_areas), "threat areas extracted")
 
     assign_threat_areas_to_cameras(cameras, threat_areas)
 
     with open("data/cameras.csv", "w") as file:
-        writer = DictWriter(file, ["id", "lat", "lon"])
+        writer = DictWriter(file, ["id", "direction", "lat", "lon"])
 
         writer.writeheader()
         for camera in cameras:
-            writer.writerow({"id": camera.id, "lat": camera.latitude, "lon": camera.longitude})
+            writer.writerow({"id": camera.id, "direction": camera.direction, "lat": camera.latitude, "lon": camera.longitude})
 
     with open("data/threat_areas.csv", "w") as file:
         writer = DictWriter(file, ["id", "threat", "lat", "lon"])
@@ -105,6 +112,5 @@ if __name__ == "__main__":
 
         writer.writeheader()
         for camera in cameras:
-            print(f"Camera {camera.id} covering {len(camera.areas_covered)} areas")
             for area_id in camera.areas_covered:
                 writer.writerow({"camera_id": camera.id, "area_id": area_id})

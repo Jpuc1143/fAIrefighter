@@ -10,6 +10,7 @@ def get_cameras(cameras_path: str, coverage_path: str) -> list[Camera]:
         for row in camera_reader:
             camera = Camera(
                     int(row["id"]),
+                    int(row["direction"]),
                     lat=float(row["lat"]),
                     lon=float(row["lon"]),
                     )
