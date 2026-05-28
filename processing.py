@@ -37,6 +37,8 @@ def extract_threat_areas(filepath: str) -> list[ThreatArea]:
                 resampling=Resampling.average,
                 )
 
+        print("Finished loading threat areas data")
+
         transform = src.transform * src.transform.scale(scale, scale)
         valid_rows, valid_cols = np.where(data != src.nodata)
         threat_values = data[valid_rows, valid_cols]
@@ -68,9 +70,9 @@ def assign_threat_areas_to_cameras(cameras: list[Camera], threat_areas: list[Thr
     area_array = list(transformer.transform(x.longitude, x.latitude) for x in threat_areas)
 
     camera_tree = KDTree(camera_array)
-    area_array = KDTree(area_array)
+    area_tree = KDTree(area_array)
 
-    results = camera_tree.query_ball_tree(area_array, CAMERA_RANGE)
+    results = camera_tree.query_ball_tree(area_tree, CAMERA_RANGE)
     for camera_index, result in enumerate(results):
         camera = cameras[camera_index]
         camera.areas_covered.extend(threat_areas[x].id for x in result)
@@ -78,7 +80,10 @@ def assign_threat_areas_to_cameras(cameras: list[Camera], threat_areas: list[Thr
 
 if __name__ == "__main__":
     cameras = extract_candidate_cameras("./Mapa_Antenas_Region_08.kmz")
+    print(len(cameras), "cameras extracted")
     threat_areas = extract_threat_areas("./8_amenaza.tif")
+    print(len(threat_areas), "threat areas extracted")
+
     assign_threat_areas_to_cameras(cameras, threat_areas)
 
     with open("data/cameras.csv", "w") as file:
@@ -100,5 +105,6 @@ if __name__ == "__main__":
 
         writer.writeheader()
         for camera in cameras:
+            print(f"Camera {camera.id} covering {len(camera.areas_covered)} areas")
             for area_id in camera.areas_covered:
                 writer.writerow({"camera_id": camera.id, "area_id": area_id})
