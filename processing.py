@@ -83,7 +83,10 @@ def assign_threat_areas_to_cameras(
         camera = cameras[camera_index]
         for area_index in result:
             angle = np.degrees(
-                math.atan2(area_array[area_index][1], area_array[area_index][0])
+                math.atan2(
+                    area_array[area_index][1] - camera_array[camera_index][1],
+                    area_array[area_index][0] - camera_array[camera_index][0],
+                    )
             )
             angle = (angle + 360) % 360
             if abs(angle - 90 * camera.direction) <= Camera.VIEW_ANGLE / 2:
