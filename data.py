@@ -9,11 +9,11 @@ def get_cameras(cameras_path: str, coverage_path: str) -> list[Camera]:
         camera_reader = DictReader(camera_file)
         for row in camera_reader:
             camera = Camera(
-                    int(row["id"]),
-                    int(row["direction"]),
-                    lat=float(row["lat"]),
-                    lon=float(row["lon"]),
-                    )
+                int(row["id"]),
+                int(row["direction"]),
+                lat=float(row["lat"]),
+                lon=float(row["lon"]),
+            )
 
             cameras[camera.id] = camera
 
@@ -33,11 +33,11 @@ def get_threat_areas(areas_path: str) -> list[ThreatArea]:
         area_file = DictReader(area_file)
         for row in area_file:
             area = ThreatArea(
-                    int(row["id"]),
-                    int(row["threat"]),
-                    lat=float(row["lat"]),
-                    lon=float(row["lon"]),
-                    )
+                int(row["id"]),
+                int(row["threat"]),
+                lat=float(row["lat"]),
+                lon=float(row["lon"]),
+            )
 
             threat_areas[area.id] = area
 

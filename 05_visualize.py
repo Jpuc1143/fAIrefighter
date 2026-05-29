@@ -5,6 +5,7 @@ import geopandas as gpd
 import pandas as pd
 from pathlib import Path
 import warnings
+
 warnings.filterwarnings("ignore")
 
 SOL_PATH = Path("resultados/solucion_piloto.json")
@@ -29,7 +30,9 @@ print("Cargando solución...")
 with open(SOL_PATH) as f:
     sol = json.load(f)
 
-print(f"  Objetivo: {sol['obj_val']:,.0f}  |  {len(sol['antenas_seleccionadas'])} antenas  |  {sol['hectareas_cubiertas_total']:,} ha")
+print(
+    f"  Objetivo: {sol['obj_val']:,.0f}  |  {len(sol['antenas_seleccionadas'])} antenas  |  {sol['hectareas_cubiertas_total']:,} ha"
+)
 
 print("Cargando shapefile amenaza (muestra)...")
 gdf = gpd.read_file(SHP_PATH)
@@ -46,7 +49,7 @@ print(f"  Muestra: {len(gdf_s):,} polígonos")
 # Centro del mapa: media de antenas seleccionadas
 lats = [a["lat"] for a in sol["antenas_seleccionadas"]]
 lons = [a["lon"] for a in sol["antenas_seleccionadas"]]
-center = [sum(lats)/len(lats), sum(lons)/len(lons)]
+center = [sum(lats) / len(lats), sum(lons) / len(lons)]
 
 m = folium.Map(location=center, zoom_start=8, tiles="CartoDB positron")
 
@@ -60,8 +63,11 @@ for gc in [1, 2, 3, 4]:
         folium.GeoJson(
             row.geometry.__geo_interface__,
             style_function=lambda f, c=GC_COLOR[gc]: {
-                "fillColor": c, "color": c, "weight": 0, "fillOpacity": 0.5
-            }
+                "fillColor": c,
+                "color": c,
+                "weight": 0,
+                "fillOpacity": 0.5,
+            },
         ).add_to(layer)
     layer.add_to(m)
 
@@ -71,9 +77,9 @@ cov_layer = folium.FeatureGroup(name="Cobertura 15 km", show=True)
 
 for a in sol["antenas_seleccionadas"]:
     popup_html = f"""
-    <b>Antena {a['id']}</b><br>
-    Lat: {a['lat']:.4f}, Lon: {a['lon']:.4f}<br>
-    UTM: ({a['easting']:.0f}, {a['northing']:.0f})
+    <b>Antena {a["id"]}</b><br>
+    Lat: {a["lat"]:.4f}, Lon: {a["lon"]:.4f}<br>
+    UTM: ({a["easting"]:.0f}, {a["northing"]:.0f})
     """
     folium.Marker(
         location=[a["lat"], a["lon"]],

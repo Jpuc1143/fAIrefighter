@@ -1,5 +1,5 @@
 class ThreatArea:
-    AREA_LENGTH = 1000 # meters -> 10 ha x 10 ha
+    AREA_LENGTH = 1000  # meters -> 10 ha x 10 ha
 
     id: int
     threat: int
