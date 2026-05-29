@@ -1,0 +1,40 @@
+GAP en MIP (Mixed Integer Programming)
+
+  Definición: diferencia relativa entre la mejor solución entera encontrada y la cota
+  inferior (lower bound) del problema.
+
+  GAP = (obj_mejor_entero - lower_bound) / obj_mejor_entero × 100%
+
+  En este problema concreto
+
+  El modelo es un MIP binario (variables x[i], W[h] ∈ {0,1}). Gurobi lo resuelve con
+  Branch & Bound:
+
+  1. Relaja el MIP → LP (variables continuas entre 0 y 1) → obtiene upper bound
+  (solución LP siempre ≥ solución entera óptima)
+  2. Ramifica (branch): fija variables binarias, crea subproblemas
+  3. En cada nodo: resuelve LP del subproblema → actualiza bounds
+  4. Cuando encuentra una solución entera factible → incumbente (mejor entero actual)
+  5. Se detiene cuando GAP = 0 (óptimo probado) o se alcanza tiempo/gap límite
+
+  Interpretación del valor en tu JSON
+
+  "gap": 0.0
+
+  GAP = 0.0 → solución óptima probada. Gurobi garantiza que no existe solución entera
+  mejor. No hay incertidumbre.
+
+  Por qué este modelo converge rápido
+
+  La formulación del CLAUDE.md lo anticipa:
+  - La relajación LP es muy ajustada — con MC=8 (o 100) cámaras y cobertura de ~70k ha
+  por antena, hay poca holgura fraccionaria
+  - W[h] ≤ Σ HV[i,h]·x[i] : restricción de cobertura obliga coherencia → el LP ya
+  tiende a dar valores 0/1 naturalmente
+  - Resultado: pocas ramas necesarias → GAP cierra rápido (145s para MC=100)
+
+  Si el GAP fuera, por ejemplo, 2.3%
+
+  Significaría: "la solución encontrada podría ser hasta 2.3% peor que el óptimo
+  teórico, pero no sabemos si existe una mejor." Para decisiones de despliegue real, un
+  GAP < 1% suele ser aceptable.
