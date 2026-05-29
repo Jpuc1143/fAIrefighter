@@ -9,8 +9,8 @@ class CameraDirection(Enum):
 
 
 class Camera:
-    VIEW_ANGLE = 120
-    VIEW_RANGE = 10000
+    VIEW_ANGLE = 90
+    VIEW_RANGE = 15000
 
     id: int
     direction: CameraDirection
