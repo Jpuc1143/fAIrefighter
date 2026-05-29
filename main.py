@@ -1,4 +1,5 @@
 from data import get_cameras, get_threat_areas
+from optimizer import optimize
 
 
 if __name__ == "__main__":
@@ -6,6 +7,7 @@ if __name__ == "__main__":
     threat_areas = get_threat_areas("./data/threat_areas.csv")
 
     # TODO optimizar
+    optimize(8, cameras, threat_areas)
 
     # TODO mostrar resultados
 
