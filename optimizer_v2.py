@@ -11,7 +11,7 @@ from threat_area import ThreatArea
 
 OUT_DIR = Path("resultados")
 OUT_DIR.mkdir(exist_ok=True)
-OUT_JSON = OUT_DIR / "solucion_v2.json"
+OUT_JSON = OUT_DIR / "solucion_v3.json"
 
 
 def optimize(
