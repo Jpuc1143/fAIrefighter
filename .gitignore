@@ -12,3 +12,5 @@ wheels/
 # GIS data
 *.kmz
 *.tif
+
+/resultados/
