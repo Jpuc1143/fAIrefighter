@@ -22,8 +22,6 @@ def optimize(
 ):
 
     t0 = time.time()
-    cameras = dict()
-    threat_areas = dict()  # TODO
 
     print(f"  {len(cameras) / 4} antenas, {len(threat_areas):,} áreas de amenaza")
 
@@ -35,32 +33,28 @@ def optimize(
 
     # Variables x[i] — install camera at antenna i
     X = m.addVars(len(cameras), vtype=GRB.BINARY, name="X")
-    X = m.addVars(len(cameras), vtype=GRB.BINARY, name="X")
-    X = m.addVars(len(cameras), vtype=GRB.BINARY, name="X")
-    X = m.addVars(len(cameras), vtype=GRB.BINARY, name="X")
-    X = m.addVars(len(cameras), vtype=GRB.BINARY, name="X")
 
     # Variables W[h] — hectare h covered
     W = m.addVars(len(threat_areas), vtype=GRB.BINARY, name="W")
 
     # Budget constraint
-    m.addConstr(gp.quicksum(x for x in X) <= camera_count, name="budget")
+    m.addConstr(gp.quicksum(X.values()) <= camera_count, name="budget")
 
     # Coverage constraints: W[h] <= sum of x[i] for i covering h
     print(f"[{time.time() - t0:.1f}s] Agregando restricciones de cobertura...")
-    for area, w in zip(threat_areas.values(), W):
+    for area, w in zip(threat_areas.values(), W.values()):
         m.addConstr(
             w
             <= quicksum(
                 x if area.id in camera.areas_covered else 0
-                for (camera, x) in zip(cameras.values(), X)
+                for (camera, x) in zip(cameras.values(), X.values())
             ),
             name=f"cov_{area.id}",
         )
 
     # Objective: maximize sum Rh * W[h]
     print(f"[{time.time() - t0:.1f}s] Definiendo objetivo...")
-    obj = gp.quicksum(area.threat * w for (area, w) in zip(threat_areas.values(), W))
+    obj = gp.quicksum(area.threat * w for (area, w) in zip(threat_areas.values(), W.values()))
     m.setObjective(obj, GRB.MAXIMIZE)
 
     print(f"[{time.time() - t0:.1f}s] Resolviendo (MC={camera_count})...")
@@ -74,10 +68,10 @@ def optimize(
         gap = m.MIPGap if m.Status != GRB.OPTIMAL else 0.0
 
         # Selected antennas
-        selected_cameras = [camera for x in zip(cameras.values(), X) if x > 0.5]
+        selected_cameras = [cam for (cam, var) in zip(cameras.values(), X.values()) if var.X > 0.5]
 
         # Covered hectares by gridcode
-        covered_areas = [area for w in zip(threat_areas.values(), W) if w > 0.5]
+        covered_areas = [area for (area, var) in zip(threat_areas.values(), W.values()) if var.X > 0.5]
 
         result = {
             "MC": camera_count,
@@ -107,13 +101,13 @@ def optimize(
         print(f"  Gap: {gap * 100:.2f}%")
         print(f"  Cámaras usadas: {len(selected_cameras)} / {camera_count}")
         for camera in selected_cameras:
-            print(f"    ID={camera.id} {camera.lat}°, {camera.lon}°")
+            print(f"    ID={camera.id} {camera.latitude}°, {camera.longitude}°")
         print(
             f"\n  Hectáreas cubiertas: {(ThreatArea.AREA_LENGTH / 100) ** 2 * len(covered_areas):,}"
         )
         print(f"  Áreas cubiertas: {len(covered_areas):,}")
         for area in covered_areas:
-            print(f"    ID={area.id} R={area.threat} {area.lat}°, {area.lon}°")
+            print(f"    ID={area.id} R={area.threat} {area.latitude}°, {area.longitude}°")
         print(f"\n  Guardado: {OUT_JSON}")
     else:
         print(f"  No se encontró solución factible. Status={m.Status}")

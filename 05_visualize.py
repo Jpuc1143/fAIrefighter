@@ -35,6 +35,7 @@ print(
 )
 
 print("Cargando shapefile amenaza (muestra)...")
+import os; os.environ["SHAPE_RESTORE_SHX"] = "YES"
 gdf = gpd.read_file(SHP_PATH)
 gdf = gdf[gdf["gridcode"] >= 1].copy()
 # Muestra estratificada por gridcode
@@ -79,7 +80,7 @@ for a in sol["antenas_seleccionadas"]:
     popup_html = f"""
     <b>Antena {a["id"]}</b><br>
     Lat: {a["lat"]:.4f}, Lon: {a["lon"]:.4f}<br>
-    UTM: ({a["easting"]:.0f}, {a["northing"]:.0f})
+    Dirección: {a["direction"]}
     """
     folium.Marker(
         location=[a["lat"], a["lon"]],
