@@ -1,0 +1,368 @@
+(fairefighter) nriquelmec@MAC-NRIQUELMEC fAIrefighter % python main.py
+  637 antenas | 2548 cámaras | 4 brigadas | 12 períodos | 24,928 áreas
+  MC=100  PRE=400.0 UF  CI=4.0 UF  CM=2.0 UF  TI=1  TM=1  tasks/período=22  delay_mantención=12  cap/período=88  cap_total=1056
+  Mantención desactivada: T=12 ≤ delay=12 → R7 fuerza Y=0, R8 omitida
+[0.0s] Construyendo modelo Gurobi...
+Set parameter Username
+Set parameter LicenseID to value 2810102
+Academic license - for non-commercial use only - expires 2027-04-17
+Set parameter TimeLimit to value 1200
+Set parameter MIPGap to value 0.01
+Set parameter OutputFlag to value 1
+Set parameter Method to value 3
+Set parameter NoRelHeurTime to value 30
+[0.8s] Variables: 452,016
+[0.8s] Agregando restricciones...
+[2.1s] Agregando R10 (cobertura)...
+[5.8s] Definiendo objetivo...
+[6.0s] Resolviendo...
+Gurobi Optimizer version 13.0.2 build v13.0.2rc1 (mac64[arm] - Darwin 23.5.0 23F79)
+
+CPU model: Apple M3 Pro
+Thread count: 12 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  1200
+MIPGap  0.01
+Method  3
+NoRelHeurTime  30
+
+Optimize a model with 455226 rows, 452016 columns and 5365896 nonzeros (Max)
+Model fingerprint: 0xad4d841b
+Model has 290964 linear objective coefficients
+Variable types: 0 continuous, 452016 integer (452016 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 4e+00]
+  Objective range  [1e+00, 4e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 4e+02]
+
+Found heuristic solution: objective -0.0000000
+Presolve removed 233455 rows and 232812 columns (presolve time = 5s)...
+Presolve removed 233466 rows and 232812 columns (presolve time = 10s)...
+Presolve removed 249191 rows and 246001 columns
+Presolve time: 14.99s
+Presolved: 206035 rows, 206015 columns, 3490308 nonzeros
+Variable types: 0 continuous, 206015 integer (206015 binary)
+Starting NoRel heuristic
+Elapsed time for NoRel heuristic: 7s (best bound 502425)
+Found heuristic solution: objective 4.0000000
+Elapsed time for NoRel heuristic: 13s (best bound 502425)
+Found heuristic solution: objective 66427.000000
+Found heuristic solution: objective 189370.00000
+Found heuristic solution: objective 189756.00000
+Found heuristic solution: objective 189821.00000
+Found heuristic solution: objective 192672.00000
+Found heuristic solution: objective 192749.00000
+Found heuristic solution: objective 200510.00000
+Elapsed time for NoRel heuristic: 19s (best bound 502425)
+Found heuristic solution: objective 209059.00000
+Found heuristic solution: objective 237903.00000
+Found heuristic solution: objective 254137.00000
+Found heuristic solution: objective 288884.00000
+Elapsed time for NoRel heuristic: 24s (best bound 502425)
+Found heuristic solution: objective 295228.00000
+Found heuristic solution: objective 303292.00000
+Found heuristic solution: objective 308600.00000
+Found heuristic solution: objective 310159.00000
+Elapsed time for NoRel heuristic: 31s (best bound 502425)
+NoRel heuristic complete
+Concurrent LP optimizer: primal simplex, dual simplex, and barrier
+Showing barrier log only...
+
+Root barrier log...
+
+Elapsed ordering time = 5s
+Elapsed ordering time = 10s
+Ordering time: 33.07s
+Elapsed ordering time = 34s
+Elapsed ordering time = 35s
+Elapsed ordering time = 41s
+Elapsed ordering time = 45s
+Elapsed ordering time = 50s
+Elapsed ordering time = 55s
+Ordering time: 59.89s
+
+Barrier statistics:
+ Dense cols : 1084
+ AA' NZ     : 2.598e+07
+ Factor NZ  : 4.553e+08 (roughly 4.0 GB of memory)
+ Factor Ops : 2.606e+12 (roughly 3 seconds per iteration)
+ Threads    : 10
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   8.14516270e+07  2.53559330e+07  4.93e+06 9.20e+01  2.70e+04   115s
+   1   5.77125151e+07  3.08537395e+07  3.47e+06 4.87e+01  1.62e+04   119s
+   2   1.58488548e+07  3.33555016e+07  9.29e+05 1.86e+00  4.19e+03   124s
+   3   8.82883295e+05  3.36472896e+07  3.84e+04 2.27e-03  2.23e+02   129s
+   4   4.41123907e+05  2.51088863e+07  1.12e+04 9.44e-04  8.09e+01   133s
+   5   3.46773201e+05  1.91552610e+07  5.36e+03 6.12e-04  4.74e+01   137s
+   6   3.15876463e+05  1.54459038e+07  3.41e+03 2.96e-04  3.45e+01   142s
+   7   2.98677018e+05  1.21358898e+07  2.28e+03 1.58e-04  2.54e+01   146s
+   8   2.94330145e+05  1.07830690e+07  1.96e+03 1.04e-04  2.21e+01   150s
+   9   2.85826054e+05  4.65970394e+06  1.16e+03 5.59e-04  9.64e+00   155s
+  10   2.90881499e+05  2.11647985e+06  4.77e+02 5.96e-04  3.94e+00   160s
+  11   3.19118187e+05  7.45048348e+05  9.59e+01 1.17e-02  8.66e-01   166s
+  12   3.53011820e+05  6.11145044e+05  5.06e+01 2.84e-02  5.06e-01   171s
+  13   3.87688923e+05  5.06797257e+05  1.36e+01 1.22e-02  2.17e-01   187s
+  14   3.99158697e+05  4.64201641e+05  6.96e+00 6.59e-03  1.18e-01   201s
+  15   4.05041954e+05  4.42073663e+05  3.66e+00 3.63e-03  6.67e-02   215s
+  16   4.07275527e+05  4.38492662e+05  2.68e+00 3.18e-03  5.55e-02   228s
+  17   4.09581169e+05  4.23666317e+05  1.51e+00 1.23e-03  2.57e-02   244s
+  18   4.10705477e+05  4.18246210e+05  1.00e+00 5.89e-04  1.42e-02   258s
+  19   4.11355566e+05  4.15692987e+05  7.11e-01 2.98e-04  8.46e-03   272s
+  20   4.12410446e+05  4.14523959e+05  2.37e-01 1.64e-04  3.91e-03   285s
+  21   4.12634236e+05  4.13620918e+05  1.43e-01 6.48e-05  1.89e-03   298s
+  22   4.12754151e+05  4.13410481e+05  9.61e-02 4.32e-05  1.26e-03   311s
+  23   4.12888824e+05  4.13224016e+05  3.98e-02 2.19e-05  6.26e-04   327s
+  24   4.12945503e+05  4.13067839e+05  1.84e-02 6.43e-06  2.37e-04   340s
+  25   4.12989316e+05  4.13002960e+05  2.40e-03 3.89e-07  2.72e-05   354s
+  26   4.12993724e+05  4.12999805e+05  9.88e-04 1.77e-07  1.19e-05   367s
+  27   4.12996685e+05  4.12997351e+05  4.31e-05 4.71e-07  1.17e-06   381s
+  28   4.12997011e+05  4.12997083e+05  1.64e-06 6.42e-07  1.25e-07   394s
+  29   4.12997028e+05  4.12997030e+05  1.13e-07 1.59e-08  5.81e-09   410s
+
+Barrier solved model in 29 iterations and 409.90 seconds (956.57 work units)
+Optimal objective 4.12997028e+05
+
+
+Root crossover log...
+
+   50051 DPushes remaining with DInf 2.3615591e-02               410s
+   35090 DPushes remaining with DInf 0.0000000e+00               417s
+   29558 DPushes remaining with DInf 0.0000000e+00               421s
+   23772 DPushes remaining with DInf 0.0000000e+00               426s
+   16007 DPushes remaining with DInf 0.0000000e+00               432s
+   10933 DPushes remaining with DInf 0.0000000e+00               435s
+     891 DPushes remaining with DInf 0.0000000e+00               440s
+       0 DPushes remaining with DInf 0.0000000e+00               441s
+
+   30995 PPushes remaining with PInf 5.2232133e-05               441s
+       0 PPushes remaining with PInf 0.0000000e+00               441s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 3.5757833e+00    441s
+
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+   77582    4.1299703e+05   0.000000e+00   3.575783e+00    441s
+   77605    4.1299703e+05   0.000000e+00   0.000000e+00    441s
+Crossover time: 31.45 seconds (73.86 work units)
+
+Solved with barrier
+
+Root relaxation: objective 4.129970e+05, 77605 iterations, 395.16 seconds (1001.70 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 412997.029    0 66011 310159.000 412997.029  33.2%     -  444s
+H    0     0                    320278.00000 412997.029  28.9%     -  444s
+H    0     0                    327452.00000 412997.029  26.1%     -  445s
+     0     0 412970.940    0 65873 327452.000 412970.940  26.1%     -  461s
+H    0     0                    327810.00000 412970.940  26.0%     -  462s
+H    0     0                    348894.00000 412970.940  18.4%     -  462s
+H    0     0                    349502.00000 412970.940  18.2%     -  462s
+     0     0 412910.927    0 65372 349502.000 412910.927  18.1%     -  494s
+     0     0 412898.718    0 65548 349502.000 412898.718  18.1%     -  512s
+     0     0 412898.353    0 65670 349502.000 412898.353  18.1%     -  516s
+     0     0 412898.353    0 65656 349502.000 412898.353  18.1%     -  517s
+     0     0 412863.152    0 65455 349502.000 412863.152  18.1%     -  555s
+     0     0 412860.506    0 65596 349502.000 412860.506  18.1%     -  563s
+     0     0 412860.219    0 65561 349502.000 412860.219  18.1%     -  565s
+     0     0 412860.219    0 65558 349502.000 412860.219  18.1%     -  565s
+     0     0 412837.888    0 65439 349502.000 412837.888  18.1%     -  615s
+H    0     0                    349585.00000 412837.888  18.1%     -  616s
+H    0     0                    349612.00000 412837.888  18.1%     -  616s
+H    0     0                    354579.00000 412837.888  16.4%     -  616s
+     0     0 412834.305    0 65395 354579.000 412834.305  16.4%     -  622s
+     0     0 412833.831    0 65455 354579.000 412833.831  16.4%     -  625s
+     0     0 412833.644    0 65477 354579.000 412833.644  16.4%     -  627s
+     0     0 412833.450    0 65477 354579.000 412833.450  16.4%     -  629s
+     0     0 412833.396    0 65448 354579.000 412833.396  16.4%     -  630s
+     0     0 412822.051    0 65630 354579.000 412822.051  16.4%     -  672s
+     0     0 412820.800    0 65725 354579.000 412820.800  16.4%     -  677s
+     0     0 412820.747    0 65701 354579.000 412820.747  16.4%     -  677s
+     0     0 412809.944    0 65469 354579.000 412809.944  16.4%     -  708s
+H    0     0                    356333.00000 412809.944  15.8%     -  710s
+     0     0 412807.601    0 65358 356333.000 412807.601  15.8%     -  714s
+     0     0 412807.512    0 65399 356333.000 412807.512  15.8%     -  717s
+     0     0 412807.505    0 65401 356333.000 412807.505  15.8%     -  717s
+     0     0 412792.407    0 65504 356333.000 412792.407  15.8%     -  752s
+H    0     0                    359412.00000 412792.407  14.9%     -  753s
+H    0     0                    359916.00000 412792.407  14.7%     -  753s
+     0     0 412791.272    0 65522 359916.000 412791.272  14.7%     -  756s
+     0     0 412790.319    0 65532 359916.000 412790.319  14.7%     -  759s
+     0     0 412790.245    0 65563 359916.000 412790.245  14.7%     -  761s
+     0     0 412790.245    0 65565 359916.000 412790.245  14.7%     -  761s
+     0     0 412779.745    0 65302 359916.000 412779.745  14.7%     -  798s
+H    0     0                    364725.00000 412779.745  13.2%     -  799s
+     0     0 412779.265    0 65227 364725.000 412779.265  13.2%     -  802s
+     0     0 412779.198    0 65181 364725.000 412779.198  13.2%     -  804s
+     0     0 412773.978    0 65394 364725.000 412773.978  13.2%     -  839s
+H    0     0                    366820.00000 412773.978  12.5%     -  841s
+     0     0 412773.625    0 65405 366820.000 412773.625  12.5%     -  843s
+     0     0 412773.323    0 65413 366820.000 412773.323  12.5%     -  845s
+     0     0 412773.277    0 65462 366820.000 412773.277  12.5%     -  846s
+     0     0 412763.094    0 66561 366820.000 412763.094  12.5%     -  885s
+H    0     0                    366919.00000 412763.094  12.5%     -  887s
+     0     0 412762.656    0 66468 366919.000 412762.656  12.5%     -  891s
+     0     0 412762.578    0 66432 366919.000 412762.578  12.5%     -  892s
+     0     0 412762.541    0 66536 366919.000 412762.541  12.5%     -  895s
+     0     0 412758.765    0 66789 366919.000 412758.765  12.5%     -  931s
+H    0     0                    369529.00000 412758.765  11.7%     -  933s
+     0     0 412758.316    0 66679 369529.000 412758.316  11.7%     -  935s
+     0     0 412758.247    0 66832 369529.000 412758.247  11.7%     -  937s
+     0     0 412758.212    0 66747 369529.000 412758.212  11.7%     -  938s
+     0     0 412754.729    0 66840 369529.000 412754.729  11.7%     -  971s
+     0     0 412754.005    0 66868 369529.000 412754.005  11.7%     -  975s
+     0     0 412753.986    0 66931 369529.000 412753.986  11.7%     -  976s
+     0     0 412750.469    0 66997 369529.000 412750.469  11.7%     - 1003s
+H    0     0                    376087.00000 412750.469  9.75%     - 1005s
+     0     0 412749.846    0 66950 376087.000 412749.846  9.75%     - 1008s
+     0     0 412749.773    0 66761 376087.000 412749.773  9.75%     - 1010s
+     0     0 412749.756    0 66730 376087.000 412749.756  9.75%     - 1011s
+     0     0 412746.973    0 66774 376087.000 412746.973  9.75%     - 1039s
+H    0     0                    376358.00000 412746.973  9.67%     - 1041s
+     0     0 412746.738    0 66808 376358.000 412746.738  9.67%     - 1042s
+     0     0 412746.528    0 66926 376358.000 412746.528  9.67%     - 1045s
+     0     0 412746.467    0 66989 376358.000 412746.467  9.67%     - 1046s
+     0     0 412744.124    0 67150 376358.000 412744.124  9.67%     - 1073s
+     0     0 412743.518    0 67089 376358.000 412743.518  9.67%     - 1079s
+     0     0 412743.485    0 67129 376358.000 412743.485  9.67%     - 1080s
+     0     0 412740.989    0 66980 376358.000 412740.989  9.67%     - 1113s
+     0     0 412740.755    0 66829 376358.000 412740.755  9.67%     - 1117s
+     0     0 412740.718    0 66841 376358.000 412740.718  9.67%     - 1119s
+     0     0 412738.922    0 66956 376358.000 412738.922  9.67%     - 1157s
+     0     0 412738.498    0 67176 376358.000 412738.498  9.67%     - 1162s
+     0     0 412738.449    0 66996 376358.000 412738.449  9.67%     - 1164s
+     0     0 412730.307    0 67002 376358.000 412730.307  9.66%     - 1199s
+
+Cutting planes:
+  Gomory: 1
+  MIR: 438
+  Zero half: 2044
+  RLT: 467
+  Relax-and-lift: 134
+
+Explored 1 nodes (150139 simplex iterations) in 1200.11 seconds (2150.18 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 10: 376358 376087 369529 ... 354579
+
+Time limit reached
+Best objective 3.763580000000e+05, best bound 4.127300000000e+05, gap 9.6642%
+
+[1206.3s] Status: 9 (GRB.OPTIMAL=2 es óptimo)
+
+=== Solución ===
+  Objetivo:          376,358
+  Gap:               9.66%
+  Cámaras usadas:    100 / 100
+    Antena=  0  Dir=1  instalada t= 2  (sin mantención)  (-38.0452°, -71.2800°)
+    Antena=  2  Dir=1  instalada t= 2  (sin mantención)  (-38.0912°, -71.4114°)
+    Antena=  2  Dir=2  instalada t= 2  (sin mantención)  (-38.0912°, -71.4114°)
+    Antena=  3  Dir=1  instalada t= 2  (sin mantención)  (-37.8269°, -71.5615°)
+    Antena=  3  Dir=3  instalada t= 1  (sin mantención)  (-37.8269°, -71.5615°)
+    Antena=  5  Dir=1  instalada t= 2  (sin mantención)  (-37.3282°, -71.6619°)
+    Antena=  6  Dir=3  instalada t= 2  (sin mantención)  (-37.3565°, -71.6664°)
+    Antena=  7  Dir=1  instalada t= 2  (sin mantención)  (-37.6278°, -71.6696°)
+    Antena=  8  Dir=1  instalada t= 1  (sin mantención)  (-38.0585°, -71.6851°)
+    Antena=  9  Dir=1  instalada t= 2  (sin mantención)  (-37.7699°, -71.7035°)
+    Antena=  9  Dir=2  instalada t= 2  (sin mantención)  (-37.7699°, -71.7035°)
+    Antena=  9  Dir=3  instalada t= 2  (sin mantención)  (-37.7699°, -71.7035°)
+    Antena= 15  Dir=2  instalada t= 1  (sin mantención)  (-37.5935°, -71.7480°)
+    Antena= 18  Dir=1  instalada t= 2  (sin mantención)  (-37.2260°, -71.7967°)
+    Antena= 18  Dir=2  instalada t= 2  (sin mantención)  (-37.2260°, -71.7967°)
+    Antena= 18  Dir=3  instalada t= 2  (sin mantención)  (-37.2260°, -71.7967°)
+    Antena= 19  Dir=1  instalada t= 2  (sin mantención)  (-37.4941°, -71.8267°)
+    Antena= 21  Dir=2  instalada t= 2  (sin mantención)  (-37.3642°, -71.8603°)
+    Antena= 30  Dir=2  instalada t= 1  (sin mantención)  (-37.2403°, -71.9423°)
+    Antena= 31  Dir=1  instalada t= 2  (sin mantención)  (-37.7940°, -71.9429°)
+    Antena= 31  Dir=2  instalada t= 2  (sin mantención)  (-37.7940°, -71.9429°)
+    Antena= 31  Dir=3  instalada t= 2  (sin mantención)  (-37.7940°, -71.9429°)
+    Antena= 36  Dir=2  instalada t= 2  (sin mantención)  (-37.3946°, -71.9949°)
+    Antena= 36  Dir=3  instalada t= 1  (sin mantención)  (-37.3946°, -71.9949°)
+    Antena= 38  Dir=1  instalada t= 2  (sin mantención)  (-37.6839°, -72.0287°)
+    Antena= 45  Dir=2  instalada t= 1  (sin mantención)  (-37.4383°, -72.1340°)
+    Antena= 45  Dir=3  instalada t= 1  (sin mantención)  (-37.4383°, -72.1340°)
+    Antena= 48  Dir=3  instalada t= 2  (sin mantención)  (-37.6294°, -72.1667°)
+    Antena= 53  Dir=1  instalada t= 2  (sin mantención)  (-37.3841°, -72.2264°)
+    Antena= 54  Dir=1  instalada t= 2  (sin mantención)  (-37.2999°, -72.2290°)
+    Antena= 55  Dir=3  instalada t= 2  (sin mantención)  (-37.7336°, -72.2322°)
+    Antena= 61  Dir=2  instalada t= 2  (sin mantención)  (-37.6310°, -72.2705°)
+    Antena= 68  Dir=3  instalada t= 1  (sin mantención)  (-37.5328°, -72.3139°)
+    Antena= 75  Dir=3  instalada t= 4  (sin mantención)  (-37.4508°, -72.3258°)
+    Antena= 80  Dir=1  instalada t= 2  (sin mantención)  (-37.0988°, -72.3331°)
+    Antena= 93  Dir=2  instalada t= 1  (sin mantención)  (-37.4738°, -72.3491°)
+    Antena= 99  Dir=1  instalada t= 1  (sin mantención)  (-37.2177°, -72.3511°)
+    Antena=115  Dir=3  instalada t= 4  (sin mantención)  (-37.2332°, -72.3702°)
+    Antena=118  Dir=1  instalada t= 2  (sin mantención)  (-37.4599°, -72.3756°)
+    Antena=125  Dir=1  instalada t= 2  (sin mantención)  (-37.8380°, -72.3856°)
+    Antena=132  Dir=2  instalada t= 1  (sin mantención)  (-37.0192°, -72.3975°)
+    Antena=137  Dir=2  instalada t= 1  (sin mantención)  (-37.4013°, -72.4145°)
+    Antena=147  Dir=1  instalada t= 2  (sin mantención)  (-37.0207°, -72.4764°)
+    Antena=151  Dir=3  instalada t= 1  (sin mantención)  (-37.5387°, -72.5292°)
+    Antena=153  Dir=2  instalada t= 1  (sin mantención)  (-36.9542°, -72.5307°)
+    Antena=157  Dir=3  instalada t= 1  (sin mantención)  (-37.0287°, -72.5471°)
+    Antena=166  Dir=3  instalada t= 1  (sin mantención)  (-37.2355°, -72.5720°)
+    Antena=171  Dir=3  instalada t= 1  (sin mantención)  (-37.1745°, -72.6149°)
+    Antena=182  Dir=2  instalada t= 1  (sin mantención)  (-36.8199°, -72.6559°)
+    Antena=191  Dir=3  instalada t= 2  (sin mantención)  (-37.3327°, -72.6806°)
+    Antena=195  Dir=2  instalada t= 1  (sin mantención)  (-36.6639°, -72.6883°)
+    Antena=195  Dir=3  instalada t= 1  (sin mantención)  (-36.6639°, -72.6883°)
+    Antena=196  Dir=3  instalada t= 2  (sin mantención)  (-37.4929°, -72.6904°)
+    Antena=200  Dir=1  instalada t= 1  (sin mantención)  (-37.2640°, -72.7056°)
+    Antena=208  Dir=2  instalada t= 1  (sin mantención)  (-36.8544°, -72.7319°)
+    Antena=210  Dir=2  instalada t= 1  (sin mantención)  (-37.0096°, -72.7369°)
+    Antena=212  Dir=2  instalada t= 2  (sin mantención)  (-37.4524°, -72.7636°)
+    Antena=215  Dir=3  instalada t= 2  (sin mantención)  (-37.2813°, -72.7755°)
+    Antena=216  Dir=3  instalada t= 2  (sin mantención)  (-36.9984°, -72.7771°)
+    Antena=222  Dir=2  instalada t= 2  (sin mantención)  (-36.7337°, -72.8377°)
+    Antena=234  Dir=3  instalada t= 2  (sin mantención)  (-36.4616°, -72.8884°)
+    Antena=238  Dir=1  instalada t= 3  (sin mantención)  (-36.7433°, -72.9079°)
+    Antena=250  Dir=2  instalada t= 2  (sin mantención)  (-37.3842°, -72.9329°)
+    Antena=277  Dir=2  instalada t= 2  (sin mantención)  (-37.4727°, -72.9567°)
+    Antena=277  Dir=3  instalada t= 1  (sin mantención)  (-37.4727°, -72.9567°)
+    Antena=290  Dir=2  instalada t= 1  (sin mantención)  (-37.0277°, -72.9851°)
+    Antena=290  Dir=3  instalada t= 2  (sin mantención)  (-37.0277°, -72.9851°)
+    Antena=295  Dir=2  instalada t= 1  (sin mantención)  (-37.3334°, -72.9908°)
+    Antena=320  Dir=1  instalada t= 1  (sin mantención)  (-37.3176°, -73.0278°)
+    Antena=358  Dir=3  instalada t= 2  (sin mantención)  (-36.8303°, -73.0479°)
+    Antena=360  Dir=0  instalada t= 1  (sin mantención)  (-36.8547°, -73.0481°)
+    Antena=404  Dir=1  instalada t= 2  (sin mantención)  (-36.8074°, -73.0664°)
+    Antena=418  Dir=2  instalada t= 3  (sin mantención)  (-37.1784°, -73.0787°)
+    Antena=439  Dir=3  instalada t= 2  (sin mantención)  (-36.7700°, -73.0949°)
+    Antena=496  Dir=2  instalada t= 2  (sin mantención)  (-38.0770°, -73.1407°)
+    Antena=496  Dir=3  instalada t= 2  (sin mantención)  (-38.0770°, -73.1407°)
+    Antena=542  Dir=3  instalada t= 2  (sin mantención)  (-37.5103°, -73.1876°)
+    Antena=549  Dir=1  instalada t= 2  (sin mantención)  (-37.8324°, -73.2232°)
+    Antena=549  Dir=2  instalada t= 1  (sin mantención)  (-37.8324°, -73.2232°)
+    Antena=549  Dir=3  instalada t= 1  (sin mantención)  (-37.8324°, -73.2232°)
+    Antena=555  Dir=2  instalada t= 1  (sin mantención)  (-37.4233°, -73.2392°)
+    Antena=555  Dir=3  instalada t= 1  (sin mantención)  (-37.4233°, -73.2392°)
+    Antena=560  Dir=2  instalada t= 2  (sin mantención)  (-38.1691°, -73.2657°)
+    Antena=565  Dir=2  instalada t= 2  (sin mantención)  (-38.0083°, -73.2983°)
+    Antena=567  Dir=2  instalada t= 2  (sin mantención)  (-37.2819°, -73.3131°)
+    Antena=573  Dir=1  instalada t= 2  (sin mantención)  (-38.3484°, -73.3380°)
+    Antena=573  Dir=2  instalada t= 2  (sin mantención)  (-38.3484°, -73.3380°)
+    Antena=573  Dir=3  instalada t= 2  (sin mantención)  (-38.3484°, -73.3380°)
+    Antena=578  Dir=1  instalada t= 3  (sin mantención)  (-37.4734°, -73.3503°)
+    Antena=579  Dir=0  instalada t= 2  (sin mantención)  (-37.3197°, -73.3517°)
+    Antena=581  Dir=1  instalada t= 2  (sin mantención)  (-37.7565°, -73.3676°)
+    Antena=584  Dir=2  instalada t= 1  (sin mantención)  (-37.8524°, -73.3751°)
+    Antena=591  Dir=1  instalada t= 2  (sin mantención)  (-37.6586°, -73.3926°)
+    Antena=610  Dir=2  instalada t= 2  (sin mantención)  (-37.3241°, -73.4795°)
+    Antena=610  Dir=3  instalada t= 1  (sin mantención)  (-37.3241°, -73.4795°)
+    Antena=618  Dir=1  instalada t= 2  (sin mantención)  (-37.5865°, -73.5021°)
+    Antena=618  Dir=2  instalada t= 2  (sin mantención)  (-37.5865°, -73.5021°)
+    Antena=618  Dir=3  instalada t= 1  (sin mantención)  (-37.5865°, -73.5021°)
+    Antena=619  Dir=3  instalada t= 2  (sin mantención)  (-37.6708°, -73.5311°)
+    Antena=626  Dir=3  instalada t= 2  (sin mantención)  (-37.1552°, -73.5825°)
+
+  Hectáreas cubiertas: 1,522,100.0
+  Áreas cubiertas:     15,221
+
+  Guardado: resultados/solucion_v3.json
