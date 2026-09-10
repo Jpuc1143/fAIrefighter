@@ -9,8 +9,22 @@ wheels/
 # Virtual environments
 .venv
 
-# GIS data
+# GIS data (datos de infraestructura: NUNCA versionar)
 *.kmz
 *.tif
 
+# Datos de entrada y salidas del modelo: contienen coordenadas de sitios reales
+data/*.csv
+!data/*.sample.csv
+output-log*.txt
+*.json
 /resultados/
+
+# Documentos con PII
+*.pdf
+
+# macOS
+.DS_Store
+
+# Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
